@@ -3,9 +3,13 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import mongoSanitize from "express-mongo-sanitize";
 import morgan from "morgan";
+import path from "path";
 import bodyParser from "body-parser";
+import userRoutes from "./routes/userRoutes.js";
+import expenseRoutes from "./routes/expenseRoutes.js";
+import incomeRoutes from "./routes/incomeRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js";
 
 dotenv.config();
@@ -19,18 +23,45 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // cookie parser middleware
 app.use(cookieParser());
-app.use(mongoSanitize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: "http://localhost:5173",
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 app.use(morgan("dev"));
+
+app.use("/api/users", userRoutes);
+app.use("/api/expenses", expenseRoutes);
+app.use("/api/incomes", incomeRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+// Serve static files
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+  // app.use(express.static(path.join(__dirname, "frontend", "dist"))); // Serve frontend build
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "public", "uploads"))
+  ); // Serve uploads
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+  );
+} else {
+  const __dirname = path.resolve();
+  app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "public", "uploads"))
+  ); // Serve uploads in development
+}
 
 app.use(notFound);
 app.use(errorHandler);
