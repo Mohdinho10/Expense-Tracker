@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CustomPieChart from "./CustomPieChart";
+import CustomPieChart from "../charts/CustomPieChart";
 
 const COLORS = [
   "#64748B", // slate-500

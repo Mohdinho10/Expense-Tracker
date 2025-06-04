@@ -1,4 +1,4 @@
-import CustomPieChart from "./CustomPieChart";
+import CustomPieChart from "./charts/CustomPieChart";
 
 const COLORS = ["#64748B", "#fb2c36", "#10B981"];
 

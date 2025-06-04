@@ -6,26 +6,59 @@ function Navbar() {
   const [openSideMenu, setOpenSideMenu] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 flex gap-5 border border-b border-gray-200/50 bg-white px-7 py-4 backdrop-blur-[2px]">
-      <button
-        className="block text-black lg:hidden"
-        onClick={() => setOpenSideMenu(!openSideMenu)}
-      >
-        {openSideMenu ? (
-          <HiOutlineMenu className="text-2xl" />
+    <>
+      <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm backdrop-blur-md">
+        {/* Logo / Brand */}
+        <h2 className="text-xl font-semibold text-slate-700">
+          Expense Tracker
+        </h2>
+
+        {/* Toggle Menu Button (Mobile) */}
+        {!openSideMenu ? (
+          <button
+            className="cursor-pointer text-gray-800 lg:hidden"
+            onClick={() => setOpenSideMenu(true)}
+          >
+            <HiOutlineMenu className="text-3xl" />
+          </button>
         ) : (
-          <HiOutlineX className="text-2xl" />
+          <button
+            className="cursor-pointer text-gray-600 lg:hidden"
+            onClick={() => setOpenSideMenu(false)}
+          >
+            <HiOutlineX className="text-2xl" />
+          </button>
         )}
-      </button>
+      </nav>
 
-      <h2 className="text-lg font-medium text-black">Expense Tracker</h2>
-
+      {/* Drawer Menu */}
       {openSideMenu && (
-        <div className="fixed top-[61px] -ml-4 bg-white">
-          <SideMenu />
-        </div>
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            onClick={() => setOpenSideMenu(false)}
+          />
+
+          {/* Slide-in SideMenu */}
+          <div className="fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-lg transition-transform duration-300 ease-in-out">
+            {/* Close Button */}
+            {/* <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
+              <h2 className="text-lg font-semibold text-purple-700">Menu</h2>
+              <button
+                className="text-gray-600"
+                onClick={() => setOpenSideMenu(false)}
+              >
+                <HiOutlineX className="text-2xl" />
+              </button>
+            </div> */}
+
+            {/* SideMenu Content */}
+            <SideMenu />
+          </div>
+        </>
       )}
-    </div>
+    </>
   );
 }
 

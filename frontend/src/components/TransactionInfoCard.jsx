@@ -12,18 +12,18 @@ function TransactionInfoCard({
   amount,
   type,
   hideDeleteBtn,
+  deleteHandler,
 }) {
   const getAmountStyles = () =>
     type === "income" ? "bg-green-50 text-green-500" : "bg-red-50 text-red-500";
 
-  const deleteHandler = () => {};
   return (
     <div className="group relative mt-2 flex items-center gap-4 rounded-lg p-3 hover:bg-gray-100/60">
       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xl text-gray-800">
         {icon ? (
-          // <img src={icon} alt={title} className="h-6 w-6" />
-          <p className="text-2xl">{icon}</p>
+          <img src={icon} alt={title} className="h-6 w-6" />
         ) : (
+          // <p className="text-2xl">{icon}</p>
           <LuUtensils />
         )}
       </div>
@@ -37,7 +37,7 @@ function TransactionInfoCard({
         <div className="flex items-center gap-2">
           {!hideDeleteBtn && (
             <button
-              className="group:hover:opacity-100 cursor-pointer text-gray-400 opacity-0 transition-opacity hover:text-red-500"
+              className="cursor-pointer text-black opacity-0 transition-opacity group-hover:opacity-100 hover:text-red-500"
               onClick={deleteHandler}
             >
               <LuTrash2 size={18} />

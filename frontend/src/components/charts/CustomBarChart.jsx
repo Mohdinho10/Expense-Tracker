@@ -5,21 +5,18 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Cell,
 } from "recharts";
-// import CustomTooltip from "./CustomTooltip";
 
 function CustomBarChart({ data }) {
-  console.log("CustomBarChart data", data);
-  const getBarColor = (index) => (index % 2 === 0 ? "#875cf5" : "#cfbefb");
+  const getBarColor = (index) => (index % 2 === 0 ? "#64748b" : "#cbd5e1"); // slate-500 and slate-300
 
   const CustomToolTip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className="rounded border border-gray-300 bg-white p-2 shadow-md">
-          <p className="mb-1 text-xs font-semibold text-gray-700">
+          <p className="mb-1 text-xs font-semibold text-slate-800">
             {payload[0].payload.category}
           </p>
           <p className="text-sm text-gray-600">
@@ -46,19 +43,9 @@ function CustomBarChart({ data }) {
           />
           <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
           <Tooltip content={CustomToolTip} />
-          <Bar
-            dataKey="amount"
-            fill="#ff8042"
-            radius={[10, 10, 0, 0]}
-            activeDot={{ r: 8, fill: "yellow" }}
-            activeStyle={{ fill: "green" }}
-          >
+          <Bar dataKey="amount" radius={[10, 10, 0, 0]}>
             {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={getBarColor(index)}
-                // fill={entry.amount > 1000 ? "#82ca9d" : "#8884d8"}
-              />
+              <Cell key={`cell-${index}`} fill={getBarColor(index)} />
             ))}
           </Bar>
         </BarChart>

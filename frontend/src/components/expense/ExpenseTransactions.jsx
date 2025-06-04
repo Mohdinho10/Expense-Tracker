@@ -1,5 +1,5 @@
 import { LuArrowRight } from "react-icons/lu";
-import TransactionInfoCard from "./TransactionInfoCard";
+import TransactionInfoCard from "../TransactionInfoCard";
 import moment from "moment";
 
 function ExpenseTransactions({ transactions = [], onSeeMore }) {
@@ -19,6 +19,7 @@ function ExpenseTransactions({ transactions = [], onSeeMore }) {
             icon={expense.icon}
             date={moment(expense.date).format("Do MMM YYYY")}
             amount={expense.amount}
+            hideDeleteBtn
           />
         ))}
       </div>

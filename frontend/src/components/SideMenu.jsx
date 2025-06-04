@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants";
 import { SIDE_MENU_DATA } from "../utils/data";
 import CharAvatar from "./CharAvatar";
@@ -53,7 +53,8 @@ function SideMenu({ activeMenu }) {
       </div>
 
       {SIDE_MENU_DATA.map((item, index) => (
-        <button
+        <Link
+          to={item.path}
           key={index}
           onClick={() => handleClick(item.path, item.label)}
           className={`flex w-full items-center gap-4 text-[15px] ${
@@ -62,7 +63,7 @@ function SideMenu({ activeMenu }) {
         >
           <item.icon className="text-xl" />
           {item.label}
-        </button>
+        </Link>
       ))}
     </div>
   );

@@ -3,21 +3,17 @@ import { IoMdCard } from "react-icons/io";
 import { addThousandSeparator } from "../utils/helper";
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../components/DashboardLayout";
 import Loader from "../components/Loader";
 import InfoCard from "../components/InfoCard";
 import RecentTransactions from "../components/RecentTransactions";
 import FinanceOverview from "../components/FinanceOverview";
-import ExpenseTransactions from "../components/ExpenseTransactions";
-import Last30DaysExpenses from "../components/Last30DaysExpenses";
-import RecentIncomeWithChart from "../components/RecentIncomeWithChart";
-import RecentIncome from "../components/RecentIncome";
+import ExpenseTransactions from "../components/expense/ExpenseTransactions";
+import Last30DaysExpenses from "../components/expense/Last30DaysExpenses";
+import RecentIncomeWithChart from "../components/income/RecentIncomeWithChart";
+import RecentIncome from "../components/income/RecentIncome";
 
 function HomePage() {
   const { data: dashboardData, isLoading } = useGetDashboardDataQuery();
-
-  console.log("Dashboard Data:", dashboardData);
-  console.log(dashboardData?.last30DaysExpenses?.transactions);
   const navigate = useNavigate();
   if (isLoading) return <Loader />;
 
