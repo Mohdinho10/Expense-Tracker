@@ -53,9 +53,9 @@ if (process.env.NODE_ENV === "production") {
     express.static(path.join(__dirname, "public", "uploads"))
   ); // Serve uploads
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
-  );
+  // app.get("*", (req, res) =>
+  //   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+  // );
 } else {
   const __dirname = path.resolve();
   app.use(
