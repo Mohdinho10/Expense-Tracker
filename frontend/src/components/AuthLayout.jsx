@@ -1,6 +1,6 @@
 import StatsInfoCard from "./StatsInfoCard";
 import { LuTrendingUpDown } from "react-icons/lu";
-import sample from "../../public/sample.png";
+import sample from "/public/sample.png";
 
 function AuthLayout({ children }) {
   return (
