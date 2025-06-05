@@ -91,7 +91,7 @@ function IncomePage() {
     }
   };
 
-  if (isLoading) <Loader />;
+  if (isLoading) return <Loader />;
 
   if (isError) return <p className="text-red-500">Failed to load expenses</p>;
   return (
