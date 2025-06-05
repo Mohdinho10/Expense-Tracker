@@ -11,6 +11,7 @@ import {
 import { toast } from "react-hot-toast";
 import { setCredentials } from "../slices/authSlice";
 import { useDispatch } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function RegisterPage() {
   const [profilePic, setProfilePic] = useState(null);
@@ -115,7 +116,7 @@ function RegisterPage() {
             className="btn-primary mt-4"
             disabled={isLoading}
           >
-            {isLoading ? "Registering..." : "Register"}
+            {isLoading ? <ClipLoader color="white" size={20} /> : "Register"}
           </button>
 
           <p className="mt-3 text-[13px] text-slate-800">

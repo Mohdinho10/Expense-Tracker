@@ -7,6 +7,7 @@ import { useLoginMutation } from "../slices/userApiSlice";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -69,7 +70,7 @@ function LoginPage() {
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
 
           <button type="submit" className="btn-primary" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+            {isLoading ? <ClipLoader color="white" size={20} /> : "Login"}
           </button>
           <p className="mt-3 text-[13px] text-slate-800">
             Don't have an account?{" "}
