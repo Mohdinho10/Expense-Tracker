@@ -1,6 +1,8 @@
 export const BASE_URL =
   // eslint-disable-next-line no-undef
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://expense-tracker-tpxc.onrender.com";
 
 export const INCOME_URL = "/api/incomes";
 export const EXPENSES_URL = "/api/expenses";
