@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://localhost:5173 , https://expense-tracker-tpxc.onrender.com",
+    origin: "http://localhost:5173 , https://expense-tracker-havw.onrender.com",
     credentials: true,
   })
 );
