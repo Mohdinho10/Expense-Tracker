@@ -7,14 +7,14 @@ import { useLogoutMutation } from "../slices/userApiSlice";
 import { logout as logoutAction } from "../slices/authSlice";
 import { toast } from "react-hot-toast";
 
-function SideMenu({ activeMenu }) {
+function SideMenu({ activeMenu, setOpenSideMenu }) {
   const user = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [logoutApiCall] = useLogoutMutation();
 
-  const handleClick = async (path, label) => {
+  const clickHandler = async (path, label) => {
     if (label === "Logout") {
       try {
         await logoutApiCall().unwrap();
@@ -56,7 +56,10 @@ function SideMenu({ activeMenu }) {
         <Link
           to={item.path}
           key={index}
-          onClick={() => handleClick(item.path, item.label)}
+          onClick={() => {
+            setOpenSideMenu(false);
+            clickHandler(item.path, item.label);
+          }}
           className={`flex w-full items-center gap-4 text-[15px] ${
             activeMenu === item.label ? "bg-primary text-white" : ""
           } mb-3 rounded-lg px-6 py-3`}
